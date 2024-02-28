@@ -1,14 +1,14 @@
-body{
-    margin: 0;
+* { padding: 0; margin: 0; }
+
+body, html {
     height: 100%;
 }
 .call{
-    padding-top: 1%;
     font-size: 10vw;
     color: whitesmoke;
     padding-left: 10%;
     width: 30%;
-    line-height: 5.5vw;
+    line-height: 6.2vw;
     background: red;
     height: 100%;
 }
@@ -28,15 +28,15 @@ body{
     height: 100%;
 }
 .subCall{
-    margin-top: 5%;
+    margin-top: 9%;
     font-size: 10vw;
     color: red;
-    line-height: 7vw;
+    line-height: 7.5vw;
 
 }
 .semi {
     position: absolute;
-    top:49%;
+    top:50%;
     left: 36%;
     transform: translate(-50%, -50%);
     height: 100%;

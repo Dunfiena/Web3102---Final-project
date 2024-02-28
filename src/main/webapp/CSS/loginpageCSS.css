@@ -1,31 +1,90 @@
+* { padding: 0; margin: 0; }
+
+body, html {
+    height: 100%;
+}
+
 .content{
     width: 100%;
     display: flex;
     flex-direction: row;
+    height: 100%;
 }
 .left-side{
     width: 50%;
-
+    height: 100%;
 }
+
 .left-side-noImg{
-    width: 100%;
+    margin: 5%;
+    width: 90%;
+    font-size: 3vw;
+    height: 100%;
+
 }
 .left-side-img{
     width: 100%;
-    background: url("img/Login_splash_image.jpg");
-    background: no-repeat;
-    height: 184px;
+    height: 100%;
+    background: red;
+}
+.loginImage{
+    padding-top: 20%;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+.regImage{
+    padding-top: 15%;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
 }
 .right-side{
-    width: 50%;
-
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    height: 100%;
 }
 .right-side-noImg{
+    margin: 5%;
     width: 100%;
+    font-size: 3vw;
+    height: 100%;
+
 }
 .right-side-img{
+    background: red;
     width: 100%;
-    background-image: url("img/Register_splash_image.jpg");
-    background: no-repeat;
-    height: 184px;
+    height: 90%;
+}
+
+.loginform{
+    line-height: 4vw;
+}
+.regform{
+    line-height: 2vw;
+}
+.formtitle{
+    color: red;
+    font-size: 5vw;
+}
+input{
+    font-size: 2vw;
+}
+
+.reset_button{
+    color: white;
+    background: red;
+}
+
+.submit_button{
+
+    color: white;
+    background: green;
+}
+
+button{
+    width: 30%;
+    height: 25%;
+    font-size: 2vw;
 }

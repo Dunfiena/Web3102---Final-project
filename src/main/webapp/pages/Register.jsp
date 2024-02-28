@@ -4,21 +4,17 @@
 <head>
     <title>Login - X_pense</title>
     <link rel="stylesheet" href="../CSS/loginpageCSS.css">
+    <link rel="stylesheet" href="../CSS/basicpage.css">
+
 </head>
 <body>
-<div>
-    <jsp:include page="../component/navbar_noSignIn.jsp"></jsp:include>
-
-</div>
 <div class="content">
-    <div class="right-side">
-        <div class="right-side-img">
 
-        </div>
-    </div>
     <div class="left-side">
         <div class="left-side-noImg">
-            <form name="registerform" method="post" action="register">
+            <div class="formtitle">Register to Expense</div>
+
+            <form class="regform" name="registerform" method="post" action="register">
 
                 <label>
                     User Name:
@@ -56,11 +52,20 @@
                 </label>
                 <br><br>
                 <button type="submit" class="submit_button"><b>Register</b></button>
-                <br>
+                &nbsp;
                 <button type="reset" class="reset_button"><b>Reset</b></button>
             </form>
         </div>
     </div>
+    <div class="right-side">
+        <div>
+            <jsp:include page="../component/navbar_noSignIn.jsp"></jsp:include>
+        </div>
+        <div class="right-side-img">
+            <div class="regImage"><img src="../CSS/img/Register_splash_image.jpg" alt="wealth vibes" width="100%"></div>
+        </div>
 </div>
+</div>
+
 </body>
 </html>
