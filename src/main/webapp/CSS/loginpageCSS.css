@@ -1,0 +1,31 @@
+.content{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.left-side{
+    width: 50%;
+
+}
+.left-side-noImg{
+    width: 100%;
+}
+.left-side-img{
+    width: 100%;
+    background: url("img/Login_splash_image.jpg");
+    background: no-repeat;
+    height: 184px;
+}
+.right-side{
+    width: 50%;
+
+}
+.right-side-noImg{
+    width: 100%;
+}
+.right-side-img{
+    width: 100%;
+    background-image: url("img/Register_splash_image.jpg");
+    background: no-repeat;
+    height: 184px;
+}
