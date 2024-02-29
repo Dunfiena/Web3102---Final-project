@@ -14,7 +14,7 @@
         <div class="left-side-noImg">
             <div class="formtitle">Register to Expense</div>
 
-            <form class="regform" name="registerform" method="post" action="register">
+            <form class="regform" method="post" action="register">
 
                 <label>
                     User Name:
@@ -29,16 +29,6 @@
                 <label>
                     Last Name:
                     <input type="text" name="lname" placeholder="enter last name" required>
-                </label>
-                <br>
-                <label>
-                    Date of Birth:
-                    <input type="date" name="dob">
-                </label>
-                <br>
-                <label>
-                    Phone number:
-                    <input type="text" name="phone" placeholder="enter phone number" required>
                 </label>
                 <br>
                 <label>
