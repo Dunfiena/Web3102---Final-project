@@ -12,19 +12,13 @@ import static com.example.web.Controller.databaseConnection.getConnection;
 
 public class userController implements userRepo{
 
-    userRepo urepo;
-    private static final String SQL_SELECT = "SELECT * FROM user";
-    private static final String SQL_SELECT_login = "SELECT * FROM user WHERE userName = ? AND hashpass = ?";
-    private static final String SQL_INSERT = "INSERT INTO user(userName, email, hashpass) VALUES (?,?,?)";
-    private static final String SQL_UPDATE = "UPDATE user SET userName=?, firstName=?, lastName=?, email=?, hashpass=? WHERE userId = ?";
-    private static final String SQL_DELETE = "DELETE FROM user WHERE userId = ?";
+    Connection conn = null;
+    PreparedStatement stmt = null;
+    ResultSet rs = null;
+    User user = null;
 
     @Override
     public User login(String userName, String password){
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        User user = null;
 
         try {
             conn = getConnection();
@@ -55,12 +49,9 @@ public class userController implements userRepo{
 
     @Override
     public void registerUser(String userName, String fname, String lname, String email, String password) throws SQLException {
-        Connection con = null;
-        PreparedStatement stmt = null;
-
         try{
-            con = getConnection();
-            stmt = con.prepareStatement("INSERT INTO user(username, fname, lname, email, hashpass) VALUES (?,?,?,?,?)");
+            conn = getConnection();
+            stmt = conn.prepareStatement("INSERT INTO user(username, fname, lname, email, hashpass) VALUES (?,?,?,?,?)");
             stmt.setString(1, userName);
             stmt.setString(2, fname);
             stmt.setString(3, lname);
@@ -75,17 +66,28 @@ public class userController implements userRepo{
     }
 
     @Override
-    public int update(User user) throws SQLException {
-        return 0;
+    public void update(User user) throws SQLException {
+        try {
+            conn = getConnection();
+            stmt = conn.prepareStatement("UPDATE user SET username=?, fname=?, lname=?, email=?, hashpass=? WHERE user_id=?;");
+            stmt.setString(1, user.getUsername());
+            stmt.setString(2, user.getFirstName());
+            stmt.setString(3, user.getLastName());
+            stmt.setString(4, user.getEmail());
+            stmt.setString(5, user.getHashpass());
+            stmt.setInt(6, Math.toIntExact(user.getUser_id()));
+
+            stmt.executeUpdate();
+        }catch (Exception ex) {
+            System.out.println("Error:" + ex.getMessage());
+        }
     }
 
     @Override
-    public int delete(User userId) throws SQLException {
-        return 0;
+    public void delete(Long userId) throws SQLException {
+        stmt = conn.prepareStatement("DELETE FROM user WHERE user_id=?;");
+        stmt.setInt(1, Math.toIntExact(userId));
+        stmt.executeUpdate();
     }
 
-    @Override
-    public User insert(String userName, String email, String password) throws SQLException {
-        return null;
-    }
 }

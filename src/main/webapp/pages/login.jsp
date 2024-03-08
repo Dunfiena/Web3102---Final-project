@@ -23,7 +23,7 @@
         </div>
         <div class="right-side-noImg">
             <div class="formtitle">Login to Expense</div>
-            <form class="loginform" name="loginform" method="post" action="login">
+            <form class="loginform" method="post" action="login">
                 <label>
                     User Name:
                     <input type="text" name="userName" placeholder="enter user name" required>

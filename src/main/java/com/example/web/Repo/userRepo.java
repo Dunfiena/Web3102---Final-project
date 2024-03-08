@@ -9,7 +9,6 @@ public interface userRepo {
     void registerUser(String userName, String fname, String lname, String email, String password) throws SQLException;
     User login (String userName, String Password) throws SQLException;
 
-    public int update (User user) throws SQLException;
-    public int delete (User userId) throws SQLException;
-    public User insert (String userName, String email, String password) throws SQLException;
+    public void update (User user) throws SQLException;
+    public void delete (Long userId) throws SQLException;
 }

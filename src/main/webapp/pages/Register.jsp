@@ -40,6 +40,10 @@
                     Password:
                     <input type="password" name="password" placeholder="enter password" required>
                 </label>
+                <label>
+                    Balance:
+                    <input type="number" name="balance" placeholder="enter account balance" required>
+                </label>
                 <br><br>
                 <button type="submit" class="submit_button"><b>Register</b></button>
                 &nbsp;

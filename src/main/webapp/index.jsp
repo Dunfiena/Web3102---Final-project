@@ -7,6 +7,7 @@
   <title>JSP - Hello World</title>
 </head>
 <body>
+
 <div class="landingbody">
   <div class="left-side">
     <div class="call">
@@ -20,6 +21,7 @@
   <div class="right-side">
     <div>
       <jsp:include page="component/navbarIndex.jsp"></jsp:include>
+<%--      <a href="pages/displayPage.jsp">cheat</a>--%>
 
     </div>
       <div class="subCall">
