@@ -15,8 +15,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="../CSS/basicpage.css">
-    <link rel="stylesheet" href="../CSS/log_tranCSS.css">
+    <link rel="stylesheet" href="CSS/basicpage.css">
+    <link rel="stylesheet" href="CSS/log_tranCSS.css">
 
     <title>Log transaction</title>
 </head>
@@ -44,7 +44,7 @@
         <div class="nav_button">
             <a href="log_tran.jsp"><button class="navigateButton">Log Transaction</button></a>
             <a href="view.jsp"><button class="navigateButton">View account</button></a>
-            <a href="../index.jsp"><button class="navigateButton">Log out</button></a>
+            <a href="index.jsp"><button class="navigateButton">Log out</button></a>
         </div>
     </div>
 

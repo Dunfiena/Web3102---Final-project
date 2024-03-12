@@ -38,10 +38,6 @@ public class EXPENSE_SERVLET01_USERFUNCS extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-    }
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
         String url = request.getServletPath();
         switch (url){
             case "/login":
@@ -72,28 +68,34 @@ public class EXPENSE_SERVLET01_USERFUNCS extends HttpServlet {
                     throw new RuntimeException(e);
                 }
                 break;
-
         }
+    }
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
     }
 
     public void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-        String username = request.getParameter("userName");
-        String password = request.getParameter("password");
+        HttpSession sess = request.getSession();
 
-        user = uControl.login(username, password);
-        account = aControl.getAccount(user.getUser_id());
+//        String username = request.getParameter("userName");
+//        String password = request.getParameter("password");
 
-        request.setAttribute("user", user);
-        request.setAttribute("account", account);
+//        user = uControl.login(username, password);
+//        account = aControl.getAccount(user.getUser_id());
+//
+//        sess.setAttribute("user", user);
+//        sess.setAttribute("account", account);
 
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/pages/displayPage.jsp");
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/displayPage.jsp");
         rd.include(request,response);
         rd.forward(request,response);
-        response.sendRedirect("pages/displayPage.jsp");
-//        setRequestReturn(request, response);
+        response.sendRedirect("displayPage.jsp");
 
     }
+
     public void register(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        HttpSession sess = request.getSession();
+
         String username = request.getParameter("userName");
         String fname = request.getParameter("fname");
         String lname = request.getParameter("lname");
@@ -101,33 +103,24 @@ public class EXPENSE_SERVLET01_USERFUNCS extends HttpServlet {
         String password = request.getParameter("password");
         double balance = Double.parseDouble(request.getParameter("balance"));
 
-        uControl.registerUser(username,fname,lname,email,password);
+        uControl.registerUser(username, fname, lname, email, password);
         user = uControl.login(username, password);
 
         aControl.registerAccount(user.getUser_id(), balance);
         account = aControl.getAccount(user.getUser_id());
-        request.setAttribute("user", user);
-        request.setAttribute("account", account);
 
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/pages/displayPage.jsp");
-        rd.include(request,response);
-        rd.forward(request,response);
-        response.sendRedirect("pages/displayPage.jsp");
-//        setRequestReturn(request, response);
+        sess.setAttribute("user", user);
+        sess.setAttribute("account", account);
+
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/displayPage.jsp");
+        rd.include(request, response);
+        rd.forward(request, response);
+        response.sendRedirect("displayPage.jsp");
 
     }
 
-//    private void setRequestReturn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        request.setAttribute("user", user);
-//        request.setAttribute("account", account);
-//
-//        RequestDispatcher rd = getServletContext().getRequestDispatcher("/pages/displayPage.jsp");
-//        rd.include(request,response);
-//        rd.forward(request,response);
-//        response.sendRedirect("pages/displayPage.jsp");
-//    }
-
     public void income(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+        HttpSession sess = request.getSession();
         Long accountID = Long.valueOf(request.getParameter("accountID"));
         String reoccurring = request.getParameter("reoccurring");
         double amount = Double.parseDouble(request.getParameter("amount"));
@@ -139,6 +132,7 @@ public class EXPENSE_SERVLET01_USERFUNCS extends HttpServlet {
     }
 
     public void expense(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+        HttpSession sess = request.getSession();
         Long accountID = Long.parseLong(request.getParameter("accountID"));
         String reoccurring = request.getParameter("reoccurring");
         double amount = Double.parseDouble(request.getParameter("amount"));

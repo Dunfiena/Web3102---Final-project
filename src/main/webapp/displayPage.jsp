@@ -20,8 +20,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="../CSS/basicpage.css">
-    <link rel="stylesheet" href="../CSS/displayPageCSS.css">
+    <link rel="stylesheet" href="CSS/basicpage.css">
+    <link rel="stylesheet" href="CSS/displayPageCSS.css">
     <title>Welcome <%=user.getUsername()%></title>
 </head>
 <body>
@@ -59,7 +59,7 @@
         <div class="nav_button">
             <a href="log_tran.jsp"><button class="navigateButton">Log Transaction</button></a>
             <a href="view.jsp"><button class="navigateButton">View account</button></a>
-            <a href="../index.jsp"><button class="navigateButton">Log out</button></a>
+            <a href="index.jsp"><button class="navigateButton">Log out</button></a>
         </div>
     </div>
 

@@ -19,17 +19,16 @@ public class userController implements userRepo{
 
     @Override
     public User login(String userName, String password){
-
         try {
             conn = getConnection();
-            stmt = conn.prepareStatement("SELECT * FROM user WHERE username = ? AND hashpass = ?");
+            stmt = conn.prepareStatement("SELECT * FROM user WHERE username=? AND hashpass=?");
             stmt.setString(1, userName);
             stmt.setString(2, password);
             rs = stmt.executeQuery();
 
             if (rs.next()) {
                 user = new User(
-                        (long) rs.getInt(1),
+                        rs.getLong(1),
                         rs.getString(2),
                         rs.getString(3),
                         rs.getString(4),

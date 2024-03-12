@@ -44,3 +44,25 @@ body, html {
     border-radius: 0 100% 100% 0;
     background-color: red;
 }
+
+@media screen and (max-width: 320px) {
+    .subCall{
+        font-size: 25vw;
+        line-height: 7.5vw;
+    }
+    .call{
+        font-size: 20vw;
+        line-height: 6.2vw;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .subCall{
+        font-size: 50vw;
+        line-height: 7.5vw;
+    }
+    .call{
+        font-size: 40vw;
+        line-height: 6.2vw;
+    }
+}
