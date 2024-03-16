@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 public interface expenseRepo {
 
-    void addExpense(Long accountId, int reoccuring, double amount) throws SQLException;
-    ArrayList<Expense> selectExpense (Long accountId) throws SQLException;
+    void addExpense(int accountId, int reoccuring, double amount, String tag) throws SQLException;
+    ArrayList<Expense> selectExpense (int accountId) throws SQLException;
     public void update (Expense out) throws SQLException;
-    public void delete (Long transaction_id_out) throws SQLException;
+    public void delete (int transaction_id_out) throws SQLException;
 }

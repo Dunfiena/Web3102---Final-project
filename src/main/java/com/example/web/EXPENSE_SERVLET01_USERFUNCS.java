@@ -54,20 +54,14 @@ public class EXPENSE_SERVLET01_USERFUNCS extends HttpServlet {
                     throw new RuntimeException(e);
                 }
                 break;
-            case "/income":
+            case "/logTransaction":
                 try {
-                    income(request,response);
-                } catch (SQLException e) {
+                    logTransaction(request,response);
+                } catch (SQLException | ServletException e) {
                     throw new RuntimeException(e);
                 }
                 break;
-            case "/expense":
-                try {
-                    expense(request,response);
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-                break;
+
         }
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -77,14 +71,14 @@ public class EXPENSE_SERVLET01_USERFUNCS extends HttpServlet {
     public void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         HttpSession sess = request.getSession();
 
-//        String username = request.getParameter("userName");
-//        String password = request.getParameter("password");
+        String username = request.getParameter("userName");
+        String password = request.getParameter("password");
 
-//        user = uControl.login(username, password);
-//        account = aControl.getAccount(user.getUser_id());
-//
-//        sess.setAttribute("user", user);
-//        sess.setAttribute("account", account);
+        user = uControl.login(username, password);
+        account = aControl.getAccount(user.getUser_id());
+
+        sess.setAttribute("user", user);
+        sess.setAttribute("account", account);
 
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/displayPage.jsp");
         rd.include(request,response);
@@ -119,29 +113,37 @@ public class EXPENSE_SERVLET01_USERFUNCS extends HttpServlet {
 
     }
 
-    public void income(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+    public void logTransaction(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
         HttpSession sess = request.getSession();
-        Long accountID = Long.valueOf(request.getParameter("accountID"));
+        user = (User)sess.getAttribute("user");
+
+        String action = request.getParameter("action");
+        int accountID = Integer.parseInt(request.getParameter("accountID"));
         String reoccurring = request.getParameter("reoccurring");
         double amount = Double.parseDouble(request.getParameter("amount"));
+        String tag = request.getParameter("tag");
         int reocc = 0;
         if (Objects.equals(reoccurring, "true")){
             reocc = 1;
         }
-        iControl.addIncome(accountID,reocc,amount);
-    }
-
-    public void expense(HttpServletRequest request, HttpServletResponse response) throws SQLException {
-        HttpSession sess = request.getSession();
-        Long accountID = Long.parseLong(request.getParameter("accountID"));
-        String reoccurring = request.getParameter("reoccurring");
-        double amount = Double.parseDouble(request.getParameter("amount"));
-
-        int reocc = 0;
-        if (Objects.equals(reoccurring, "true")){
-            reocc = 1;
+        accountController aControl = new accountController();
+        account = aControl.getAccount(user.getUser_id());
+        if (Objects.equals(action, "income")) {
+            iControl.addIncome(accountID, reocc, amount, tag);
+            account.setBalence(account.getBalence()+amount);
+            aControl.update(account);
+        }else {
+            eControl.addExpense(accountID,reocc,amount, tag);
+            account.setBalence(account.getBalence()-amount);
+            aControl.update(account);
         }
-        eControl.addExpense(accountID,reocc,amount);
+        sess.setAttribute("account", account);
+
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/log_tran.jsp");
+        rd.include(request,response);
+        rd.forward(request,response);
+        response.sendRedirect("log_tran.jsp");
+
     }
 
     public void destroy() {

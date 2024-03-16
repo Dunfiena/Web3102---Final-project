@@ -23,20 +23,12 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>logIncome</servlet-name>
+        <servlet-name>logTransaction</servlet-name>
         <servlet-class>com.example.web.EXPENSE_SERVLET01_USERFUNCS</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>logIncome</servlet-name>
-        <url-pattern>/income</url-pattern>
+        <servlet-name>logTransaction</servlet-name>
+        <url-pattern>/logTransaction</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>logExpense</servlet-name>
-        <servlet-class>com.example.web.EXPENSE_SERVLET01_USERFUNCS</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>logExpense</servlet-name>
-        <url-pattern>/expense</url-pattern>
-    </servlet-mapping>
 </web-app>

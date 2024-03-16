@@ -9,29 +9,24 @@ import jakarta.persistence.Id;
 public class Account {
 
     @Id
-    @GeneratedValue
-    private Long account_id;
-
-    @Column(name = "user_id")
+    private int account_id;
     private long user_id;
-
-    @Column(name = "balance")
     private double balence;
 
     public Account() {
     }
 
-    public Account(Long account_id, long user_id, double balence) {
+    public Account(int account_id, long user_id, double balence) {
         this.account_id = account_id;
         this.user_id = user_id;
         this.balence = balence;
     }
 
-    public Long getAccount_id() {
+    public int getAccount_id() {
         return account_id;
     }
 
-    public void setAccount_id(Long account_id) {
+    public void setAccount_id(int account_id) {
         this.account_id = account_id;
     }
 

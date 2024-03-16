@@ -5,8 +5,8 @@
 <%@ page import="com.example.web.Controller.incomeController" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    User user = (User) request.getAttribute("user");
-    Account account = (Account) request.getAttribute("account");
+    User user = (User) session.getAttribute("user");
+    Account account = (Account) session.getAttribute("account");
     incomeController iControl = new incomeController();
     expenseController eControl = new expenseController();
 
@@ -31,8 +31,8 @@
             if (income.getReoccuring() == 1) {
                 reocc = true;
             }
-            tran = new transaction(Math.toIntExact(income.getId()), "Income",
-                    income.getTran_date(), income.getAmount(), reocc);
+            tran = new transaction(income.getId(), "Income",
+                    income.getTran_date(), income.getAmount(), income.getTag(), reocc);
             transactions.add(tran);
         }
     }
@@ -44,7 +44,7 @@
                 reocc = true;
             }
             tran = new transaction(Math.toIntExact(expense.getId()), "Expense",
-                    expense.getTran_date(), expense.getAmount(), reocc);
+                    expense.getTran_date(), expense.getAmount(), expense.getTag(), reocc);
             transactions.add(tran);
         }
     }
@@ -84,6 +84,7 @@
                     <th>Type</th>
                     <th>Date</th>
                     <th>Amount</th>
+                    <th>Tag</th>
                     <th>Reoccurring</th>
                 </tr>
                 <% if(!transactions.isEmpty()){
@@ -92,6 +93,7 @@
                 <td><%=tra.getType()%></td>
                 <td><%=tra.getDate()%></td>
                 <td><%=tra.getAmount()%></td>
+                <td><%=tra.getTag()%></td>
                 <td><%=tra.isReOccurring()%></td>
             </tr>
 
@@ -99,6 +101,8 @@
             </table>
         </div>
         <div class="nav_button">
+            <a href="displayPage.jsp"><button class="navigateButton">Home Screen</button></a>
+            <br>
             <a href="log_tran.jsp"><button class="navigateButton">Log Transaction</button></a>
             <br>
             <a href="view.jsp"><button class="navigateButton">View account</button></a>

@@ -19,7 +19,7 @@
 
     <div class="right-side">
         <div>
-            <jsp:include page="component/navbar_noSignIn.jsp"></jsp:include>
+            <jsp:include page="component/navbarIndex.jsp"></jsp:include>
         </div>
         <div class="right-side-noImg">
             <div class="formtitle">Login to Expense</div>

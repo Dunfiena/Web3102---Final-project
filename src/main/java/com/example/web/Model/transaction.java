@@ -7,13 +7,15 @@ public class transaction {
     String type;
     Date date;
     double amount;
+    private String tag;
     boolean reOccurring;
 
-    public transaction(int id, String type, Date date, double amount, boolean reOccurring) {
+    public transaction(int id, String type, Date date, double amount, String tag, boolean reOccurring) {
         this.id = id;
         this.type = type;
         this.date = date;
         this.amount = amount;
+        this.tag = tag;
         this.reOccurring = reOccurring;
     }
 
@@ -55,5 +57,13 @@ public class transaction {
 
     public void setReOccurring(boolean reOccurring) {
         this.reOccurring = reOccurring;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
     }
 }

@@ -28,7 +28,7 @@ public class userController implements userRepo{
 
             if (rs.next()) {
                 user = new User(
-                        rs.getLong(1),
+                        rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
                         rs.getString(4),
@@ -74,7 +74,7 @@ public class userController implements userRepo{
             stmt.setString(3, user.getLastName());
             stmt.setString(4, user.getEmail());
             stmt.setString(5, user.getHashpass());
-            stmt.setInt(6, Math.toIntExact(user.getUser_id()));
+            stmt.setInt(6, user.getUser_id());
 
             stmt.executeUpdate();
         }catch (Exception ex) {
@@ -83,9 +83,9 @@ public class userController implements userRepo{
     }
 
     @Override
-    public void delete(Long userId) throws SQLException {
+    public void delete(int userId) throws SQLException {
         stmt = conn.prepareStatement("DELETE FROM user WHERE user_id=?;");
-        stmt.setInt(1, Math.toIntExact(userId));
+        stmt.setInt(1, userId);
         stmt.executeUpdate();
     }
 

@@ -7,9 +7,9 @@ import java.sql.SQLException;
 
 public interface accountRepo {
 
-    void registerAccount(Long userId, double balance) throws SQLException;
-    Account getAccount (Long userId) throws SQLException;
+    void registerAccount(int userId, double balance) throws SQLException;
+    Account getAccount (int userId) throws SQLException;
 
     public void update (Account account) throws SQLException;
-    public void delete (Long accountId) throws SQLException;
+    public void delete (int accountId) throws SQLException;
 }

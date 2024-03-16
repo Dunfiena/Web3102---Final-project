@@ -14,19 +14,20 @@ import static com.example.web.Controller.databaseConnection.getConnection;
 
 public class incomeController implements incomeRepo {
     Income income;
-    ArrayList<Income> incomeArrayList;
+    ArrayList<Income> incomeArrayList = new ArrayList<>();
     Connection conn = null;
     PreparedStatement stmt = null;
     ResultSet rs = null;
 
     @Override
-    public void addIncome(Long accountId, int reoccuring, double amount) throws SQLException {
+    public void addIncome(int accountId, int reoccurring, double amount, String tag) throws SQLException {
         try{
             conn = getConnection();
-            stmt = conn.prepareStatement("INSERT INTO income(account_id, reoccuring, amount) VALUES (?,?,?)");
-            stmt.setInt(1, Math.toIntExact(accountId));
-            stmt.setInt(2, reoccuring);
+            stmt = conn.prepareStatement("INSERT INTO income(account_id, reoccuring, amount, tag) VALUES (?,?,?,?)");
+            stmt.setInt(1, accountId);
+            stmt.setInt(2, reoccurring);
             stmt.setDouble(3, amount);
+            stmt.setString(4, tag);
 
             stmt.executeUpdate();
 
@@ -36,24 +37,25 @@ public class incomeController implements incomeRepo {
     }
 
     @Override
-    public ArrayList<Income> selectIncome(Long accountId) throws SQLException {
+    public ArrayList<Income> selectIncome(int accountId) throws SQLException {
         try {
             conn = getConnection();
-            stmt = conn.prepareStatement("SELECT * FROM income WHERE account_id = ?");
-            stmt.setInt(1, Math.toIntExact(accountId));
+            stmt = conn.prepareStatement("SELECT * FROM income WHERE account_id=?");
+            stmt.setInt(1, accountId);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
                 income = new Income(
-                        (long) rs.getInt(1),
+                        rs.getInt(1),
                         rs.getInt(2),
                         rs.getInt(3),
                         rs.getDouble(4),
-                        rs.getTimestamp(5)
+                        rs.getString(5),
+                        rs.getTimestamp(6)
                 );
                 incomeArrayList.add(income);
             }
-                return incomeArrayList;
+            return incomeArrayList;
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -63,10 +65,10 @@ public class incomeController implements incomeRepo {
     public void update(Income in) throws SQLException {
         try {
             conn = getConnection();
-            stmt = conn.prepareStatement("UPDATE income SET reoccuring=?, amount=? WHERE transaction_id_in=?;");
+            stmt = conn.prepareStatement("UPDATE income SET reoccuring=?, amount=?, tag=? WHERE transaction_id_in=?;");
             stmt.setInt(1, in.getReoccuring());
             stmt.setDouble(2, in.getAmount());
-            stmt.setInt(3, Math.toIntExact(in.getId()));
+            stmt.setInt(3, in.getId());
 
             stmt.executeUpdate();
         }catch (Exception ex) {

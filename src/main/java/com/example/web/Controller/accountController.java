@@ -19,11 +19,11 @@ public class accountController implements accountRepo {
     ResultSet rs = null;
 
     @Override
-    public void registerAccount(Long userId, double balance) throws SQLException {
+    public void registerAccount(int userId, double balance) throws SQLException {
         try{
             conn = getConnection();
             stmt = conn.prepareStatement("INSERT INTO account(user_id, balance) VALUES (?,?)");
-            stmt.setInt(1, Math.toIntExact(userId));
+            stmt.setInt(1, userId);
             stmt.setDouble(2, balance);
 
             stmt.executeUpdate();
@@ -34,16 +34,16 @@ public class accountController implements accountRepo {
     }
 
     @Override
-    public Account getAccount(Long userId) throws SQLException {
+    public Account getAccount(int userId) throws SQLException {
         try {
             conn = getConnection();
-            stmt = conn.prepareStatement("SELECT * FROM account where user_id = ?");
-            stmt.setInt(1, Math.toIntExact(userId));
+            stmt = conn.prepareStatement("SELECT * FROM account where user_id=?");
+            stmt.setInt(1, userId);
             rs = stmt.executeQuery();
 
             if (rs.next()) {
                 account = new Account(
-                        (long) rs.getInt(1),
+                        rs.getInt(1),
                         rs.getInt(2),
                         rs.getDouble(3)
                 );
@@ -60,7 +60,7 @@ public class accountController implements accountRepo {
             conn = getConnection();
             stmt = conn.prepareStatement("UPDATE account SET balance=? WHERE account_id=?;");
             stmt.setDouble(1, account.getBalence());
-            stmt.setInt(2, Math.toIntExact(account.getAccount_id()));
+            stmt.setInt(2, account.getAccount_id());
 
             stmt.executeUpdate();
         }catch (Exception ex) {
@@ -69,9 +69,9 @@ public class accountController implements accountRepo {
     }
 
     @Override
-    public void delete(Long accountId) throws SQLException {
+    public void delete(int accountId) throws SQLException {
         stmt = conn.prepareStatement("DELETE FROM account WHERE account_id=?;");
-        stmt.setInt(1, Math.toIntExact(accountId));
+        stmt.setInt(1, accountId);
         stmt.executeUpdate();
     }
 }

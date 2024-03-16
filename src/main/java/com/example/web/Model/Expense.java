@@ -10,37 +10,30 @@ import java.sql.Timestamp;
 @Entity
 public class Expense {
     @Id
-    @GeneratedValue
-    private Long id;
-
-    @Column(name="account_id")
+    private int id;
     private int account_id;
-
-    @Column(name="reoccuring")
     private int reoccuring;
-
-    @Column(name = "amount")
     private double amount;
-
-    @Column(name = "transaction_date")
+    private String tag;
     private Timestamp tran_date;
 
     public Expense() {
     }
 
-    public Expense(Long id, int account_id, int reoccuring, double amount, Timestamp tran_date) {
+    public Expense(int id, int account_id, int reoccuring, double amount, String tag, Timestamp tran_date) {
         this.id = id;
         this.account_id = account_id;
         this.reoccuring = reoccuring;
         this.amount = amount;
+        this.tag = tag;
         this.tran_date = tran_date;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
@@ -76,4 +69,11 @@ public class Expense {
         this.tran_date = tran_date;
     }
 
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
 }

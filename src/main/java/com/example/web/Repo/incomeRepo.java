@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 public interface incomeRepo {
 
-    void addIncome(Long accountId,int reoccuring, double amount) throws SQLException;
-    ArrayList<Income> selectIncome (Long accountId) throws SQLException;
+    void addIncome(int accountId,int reoccurring, double amount, String tag) throws SQLException;
+    ArrayList<Income> selectIncome (int accountId) throws SQLException;
 
     public void update (Income in) throws SQLException;
     public void delete (int transaction_id_in) throws SQLException;

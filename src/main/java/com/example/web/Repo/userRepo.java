@@ -10,5 +10,5 @@ public interface userRepo {
     User login (String userName, String Password) throws SQLException;
 
     public void update (User user) throws SQLException;
-    public void delete (Long userId) throws SQLException;
+    public void delete (int userId) throws SQLException;
 }

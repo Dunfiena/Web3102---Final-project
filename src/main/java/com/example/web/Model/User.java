@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 @Entity
 public class User {
     @Id
-    private Long user_id;
+    private int user_id;
     private String username;
     private String firstName;
     private String lastName;
@@ -21,7 +21,7 @@ public class User {
     public User() {
     }
 
-    public User(Long user_id, String username, String firstName, String lastName, String email, String hashpass, Timestamp account_created) {
+    public User(int user_id, String username, String firstName, String lastName, String email, String hashpass, Timestamp account_created) {
         this.user_id = user_id;
         this.username = username;
         this.firstName = firstName;
@@ -31,11 +31,11 @@ public class User {
         this.account_created = account_created;
     }
 
-    public Long getUser_id() {
+    public int getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(Long user_id) {
+    public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
 

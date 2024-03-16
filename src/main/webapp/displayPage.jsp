@@ -3,18 +3,33 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.web.Model.Income" %>
 <%@ page import="com.example.web.Model.Expense" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="com.example.web.Controller.incomeController" %>
+<%@ page import="com.example.web.Controller.expenseController" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="com.example.web.Controller.accountController" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <%
-    User user = (User)request.getAttribute("user");
-    Account account = (Account) request.getAttribute("account");
-//    ArrayList<Income> incomes = (ArrayList<Income>)request.getAttribute("incomes");
-//    ArrayList<Expense> expenses = (ArrayList<Expense>)request.getAttribute("expenses");
+    incomeController iControl = new incomeController();
+    expenseController eControl = new expenseController();
 
-//    int transactions_count = incomes.size() + expenses.size();
+    User user = (User)session.getAttribute("user");
+    Account account = (Account)session.getAttribute("account") ;
+    int transactions_count=0;
 
-    if (user == null){
-        user = new User();
-        user.setUsername("guest");
+    ArrayList<Income> incomes = new ArrayList<Income>();
+    ArrayList<Expense> expenses = new ArrayList<Expense>();
+    try {
+        incomes = iControl.selectIncome(account.getAccount_id());
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
+    }
+    try {
+        expenses = eControl.selectExpense(account.getAccount_id());
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
+    }
+    if(!incomes.isEmpty() && !expenses.isEmpty()) {
+        transactions_count = incomes.size() + expenses.size();
     }
 %>
 <!DOCTYPE html>
@@ -37,26 +52,32 @@
             </div>
         </div>
         <div class="balance_display">
-<%--            <table>--%>
-<%--                <tr>--%>
-<%--                    <th>Balance:</th>--%>
-<%--                    <td><%=account.getBalence()%></td>--%>
-<%--                </tr>--%>
-<%--                <tr>--%>
-<%--                    <th>Number of transactions:</th>--%>
-<%--                    <td><%=transactions_count%>--%>
-<%--                </tr>--%>
-<%--                <tr>--%>
-<%--                    <th>Next reoccurring income transaction:</th>--%>
-<%--                    <td><%=incomes.get(-0).getTran_date()%></td>--%>
-<%--                </tr>--%>
-<%--                <tr>--%>
-<%--                    <th>Next reoccurring expense transaction:</th>--%>
-<%--                    <td><%=expenses.get(-0).getTran_date()%></td>--%>
-<%--                </tr>--%>
-<%--            </table>--%>
+            <table>
+                <tr>
+                    <th>Balance:</th>
+                    <td><%=account.getBalence()%></td>
+                </tr>
+                <tr>
+                    <th>Number of transactions:</th>
+                    <td><%=transactions_count%>
+                </tr>
+                <tr>
+                    <th>Next reoccurring income transaction:</th>
+                    <% if (!incomes.isEmpty()){ %>
+                    <td><%=incomes.get(0).getTran_date()%></td>
+                    <%}%>
+                </tr>
+                <tr>
+                    <th>Next reoccurring expense transaction:</th>
+                    <% if (!expenses.isEmpty()){ %>
+                    <td><%=expenses.get(0).getTran_date()%></td>
+                    <%}%>
+
+                </tr>
+            </table>
         </div>
         <div class="nav_button">
+            <a href="displayPage.jsp"><button class="navigateButton">Home Screen</button></a>
             <a href="log_tran.jsp"><button class="navigateButton">Log Transaction</button></a>
             <a href="view.jsp"><button class="navigateButton">View account</button></a>
             <a href="index.jsp"><button class="navigateButton">Log out</button></a>
@@ -75,13 +96,18 @@
                     <th>Amount</th>
                     <th>Reoccurring</th>
                 </tr>
-<%--                <% if (incomes !=null){for(Income income: incomes){ %>--%>
+                <% if (!incomes.isEmpty()){
+                    for(Income income: incomes){ %>
                 <tr>
-<%--                    <td><%=income.getTran_date()%></td>--%>
-<%--                    <td><%=income.getAmount()%></td>--%>
-<%--                    <td><%=income.getReoccuring()%></td>--%>
+                    <td><%=income.getTran_date()%></td>
+                    <td><%=income.getAmount()%></td>
+                    <td> <%if(income.getReoccuring() == 1){%>
+                        Yes
+                        <%}else{%>
+                        No
+                        <%}%></td>
                 </tr>
-<%--                <%}}%>--%>
+                <%}}%>
             </table>
 
         </div>
@@ -99,13 +125,19 @@
                     <th>Amount</th>
                     <th>Reoccurring</th>
                 </tr>
-<%--                <% if (expenses !=null){for(Expense expense: expenses){ %>--%>
+                <% if (!expenses.isEmpty()){
+                    for(Expense expense: expenses){ %>
                 <tr>
-<%--                    <td><%=expense.getTran_date()%></td>--%>
-<%--                    <td><%=expense.getAmount()%></td>--%>
-<%--                    <td><%=expense.getReoccuring()%></td>--%>
+                    <td><%=expense.getTran_date()%></td>
+                    <td><%=expense.getAmount()%></td>
+                    <td><%if(expense.getReoccuring() == 1){%>
+                        Yes
+                        <%}else{%>
+                        No
+                        <%}%></td>
                 </tr>
-<%--                <%}}%>--%>
+                <%}
+                }%>
             </table>
         </div>
     </div>
