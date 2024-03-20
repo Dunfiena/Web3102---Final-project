@@ -2,14 +2,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login - X_pense</title>
-    <link rel="stylesheet" href="CSS/loginpageCSS.css">
+    <link rel="stylesheet" href="CSS/registerCSS.css">
     <link rel="stylesheet" href="CSS/basicpage.css">
 
 </head>
 <body>
 <div class="content">
-
     <div class="left-side">
         <div class="left-side-noImg">
             <div class="formtitle">Register to Expense</div>
@@ -57,8 +57,7 @@
         <div class="right-side-img">
             <div class="regImage"><img src="CSS/img/Register_splash_image.jpg" alt="wealth vibes" width="100%"></div>
         </div>
+    </div>
 </div>
-</div>
-
 </body>
 </html>

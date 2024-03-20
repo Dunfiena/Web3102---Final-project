@@ -2,9 +2,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login - X_pense</title>
     <link rel="stylesheet" href="CSS/basicpage.css">
-
     <link rel="stylesheet" href="CSS/loginpageCSS.css">
 
 </head>
@@ -25,11 +25,12 @@
             <div class="formtitle">Login to Expense</div>
             <form class="loginform" method="get" action="login">
                 <label>
-                    User Name:
+                    User Name:<br>
                     <input type="text" name="userName" placeholder="enter user name" required>
                 </label>
+                <br>
                 <label>
-                    Password:
+                    Password:<br>
                     <input type="password" name="password" placeholder="enter password" required>
                 </label>
                 <br><br>

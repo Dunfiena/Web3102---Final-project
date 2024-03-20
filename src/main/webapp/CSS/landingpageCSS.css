@@ -45,24 +45,35 @@ body, html {
     background-color: red;
 }
 
-@media screen and (max-width: 320px) {
+@media only screen and (max-width: 321px) {
     .subCall{
-        font-size: 25vw;
-        line-height: 7.5vw;
+        font-size: 32vw;
+        line-height: 12vw;
     }
     .call{
-        font-size: 20vw;
-        line-height: 6.2vw;
+        font-size: 36vw;
+        line-height: 20vw;
     }
 }
 
-@media screen and (max-width: 480px) {
+@media only screen and (max-width:480px) {
     .subCall{
-        font-size: 50vw;
-        line-height: 7.5vw;
+        font-size: 16vw;
+        line-height: 12vw;
     }
     .call{
-        font-size: 40vw;
-        line-height: 6.2vw;
+        font-size: 24vw;
+        line-height: 12vw;
+    }
+}
+
+@media only screen and (max-width:720px) {
+    .subCall{
+        font-size: 12vw;
+        line-height: 12vw;
+    }
+    .call{
+        font-size: 16vw;
+        line-height: 12vw;
     }
 }

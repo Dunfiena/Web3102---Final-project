@@ -15,40 +15,39 @@ body, html {
     height: 100%;
 }
 
-.left-side-img{
-    width: 100%;
+.left-side-noImg{
+    margin: 5%;
+    width: 90%;
+    font-size: 3vw;
     height: 100%;
-    background: red;
+
 }
-.loginImage{
-    padding-top: 20%;
+.regImage{
+    padding-top: 15%;
     justify-content: center;
     width: 100%;
-    height: 80%;
+    height: 85%;
 }
-
 .right-side{
     display: flex;
     flex-direction: column;
     width: 45%;
     height: 100%;
 }
-.right-side-noImg{
-    margin: 5%;
+.right-side-img{
+    background: red;
     width: 100%;
-    font-size: 3vw;
-    height: 100%;
-    padding-top: 10%;
-
+    height: 90%;
 }
 
-.loginform{
-    line-height: 4vw;
-
+.regform{
+    line-height: 2.5vw;
 }
 .formtitle{
     color: red;
-    font-size: 5vw;
+    font-size: 6vw;
+    padding-top: 2.5%;
+    padding-bottom: 5%;
 }
 input{
     font-size: 2vw;
@@ -74,26 +73,24 @@ button{
 @media only screen and (max-width: 480px){
     .content{
         flex-direction: column;
-        padding: 0;
-        margin: 0;
     }
     .left-side{
         width: 100%;
-        height: 25%;
-        padding: 0;
-        margin: 0;
+        height: 50%;
     }
 
-    .left-side-img{
-        padding: 0;
-        margin: 0;
+    .left-side-noImg{
+        margin: 5%;
+        width: 90%;
+        font-size: 6vw;
+        height: 90%;
+
+    }
+    .regImage{
+        padding-top: 15%;
         justify-content: center;
         width: 100%;
-        overflow-y: hidden;
-    }
-    .loginImage{
-        padding-top: 0;
-        width: 80%;
+        height: 100%;
     }
     .right-side{
         display: flex;
@@ -101,14 +98,10 @@ button{
         width: 100%;
         height: 50%;
     }
-
-    .right-side-noImg{
-        margin: 5%;
-        width: 90%;
-        height: 90%;
-        font-size: 8vw;
+    .right-side-img{
+        width: 100%;
+        height: 50%;
     }
-
     .formtitle{
         font-size: 10vw;
     }

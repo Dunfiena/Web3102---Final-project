@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <html>
 <head>
   <link rel="stylesheet" href="CSS/landingpageCSS.css">
@@ -21,7 +22,6 @@
   <div class="right-side">
     <div>
       <jsp:include page="component/navbarIndex.jsp"></jsp:include>
-<%--      <a href="pages/displayPage.jsp">cheat</a>--%>
 
     </div>
       <div class="subCall">
