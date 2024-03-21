@@ -58,12 +58,13 @@ body, html {
 
 @media only screen and (max-width:480px) {
     .subCall{
-        font-size: 16vw;
+        padding-top: 50%;
+        font-size: 24vw;
         line-height: 12vw;
     }
     .call{
-        font-size: 24vw;
-        line-height: 12vw;
+        font-size: 32vw;
+        line-height: 16vw;
     }
 }
 

@@ -81,3 +81,56 @@ th, td {
 .nav_button {
     width: 30%;
 }
+
+@media only screen and (max-width: 480px) {
+
+    .view_body {
+        flex-direction: column;
+    }
+
+    .top_bar {
+        width: 100%;
+    }
+
+    .bottom_bar {
+        margin-top: 5%;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav_button {
+        margin-top: 5%;
+        width: 100%;
+        align-content: center;
+    }
+
+    .log {
+        width: 100%;
+    }
+
+    th{
+        font-size: 4vw;
+    }
+
+    td{
+        font-size: 3.5vw;
+
+    }
+
+    .account_info {
+        font-size: 6vw;
+        line-height: 8vw;
+
+    }
+
+    .title {
+        font-size: 9vw;
+    }
+
+    .navigateButton{
+        height: 40%;
+        font-size: 4vw;
+        width: 100%;
+        margin-left: 0;
+    }
+}
